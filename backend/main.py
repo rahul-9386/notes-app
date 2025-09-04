@@ -13,7 +13,7 @@ app = FastAPI()
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For development; restrict in production
+    allow_origins=["*"],  # For development; restrict in production, add frontend URL for production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -33,6 +33,10 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@app.get("/")
+def root():
+    return {"message": "Notes API is running"}
 
 @app.get("/notes")
 def read_notes(db: Session = Depends(get_db)):

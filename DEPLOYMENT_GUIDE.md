@@ -7,34 +7,35 @@
 
 ---
 
-## Step 1: Deploy Backend to Render
+## Step 1: Deploy Backend to Railway
 
-### 1.1 Create PostgreSQL Database
-1. Go to [Render Dashboard](https://dashboard.render.com)
-2. Click **"New"** → **"Database"**
-3. Choose **PostgreSQL**
-4. Set name: `notes-db`
-5. Choose **Free** plan
-6. Click **"Create Database"**
-7. **Copy the connection string** (you'll need it later)
+### 1.1 Create Railway Project
+1. Go to [Railway Dashboard](https://railway.app/dashboard)
+2. Click **"New Project"**
+3. Choose **"Deploy from GitHub repo"**
+4. Connect your GitHub account and select `rahul-9386/notes-app`
+5. Set **Root Directory**: `backend`
 
-### 1.2 Create Web Service
-1. In Render Dashboard, click **"New"** → **"Web Service"**
-2. Connect your GitHub repository: `rahul-9386/notes-app`
-3. Configure:
-   - **Name**: `notes-app-backend`
-   - **Environment**: `Python`
-   - **Build Command**: `cd backend && pip install -r requirements.txt`
-   - **Start Command**: `cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT`
-4. Add Environment Variable:
+### 1.2 Add PostgreSQL Database
+1. In your Railway project, click **"Add Plugin"** → **"PostgreSQL"**
+2. Railway will automatically create and configure the database
+3. Copy the `DATABASE_URL` from the database settings
+
+### 1.3 Configure Environment Variables
+1. In Railway project settings, add:
    - **Key**: `DATABASE_URL`
-   - **Value**: Paste the PostgreSQL connection string from step 1.1
-5. Choose **Free** plan
-6. Click **"Create Web Service"**
+   - **Value**: The PostgreSQL connection string from step 1.2
 
-### 1.3 Verify Backend Deployment
+### 1.4 Set Start Command
+- Railway will auto-detect Python and use the default start command
+- If needed, set: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+
+### 1.5 Deploy
+- Click **"Deploy"**
 - Wait for deployment to complete (usually 2-3 minutes)
-- Copy the backend URL (e.g., `https://notes-app-backend.onrender.com`)
+
+### 1.6 Verify Backend Deployment
+- Copy the backend URL (e.g., `https://notes-app-backend-production.up.railway.app`)
 
 ---
 
@@ -94,8 +95,8 @@ Visit: `https://your-frontend-url.vercel.app`
 
 ## Final URLs
 - **Frontend**: `https://your-project.vercel.app`
-- **Backend**: `https://your-project.onrender.com`
-- **API Docs**: `https://your-project.onrender.com/docs`
+- **Backend**: `https://your-project.up.railway.app`
+- **API Docs**: `https://your-project.up.railway.app/docs`
 
 ---
 
