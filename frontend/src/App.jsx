@@ -5,7 +5,7 @@ import NoteForm from './components/NoteForm'
 import NoteDetail from './components/NoteDetail'
 import ShareModal from './components/ShareModal'
 
-const API_BASE = 'http://localhost:8001' // Change to production URL later
+const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:8001' // Use environment variable or fallback to localhost
 
 function App() {
   const [notes, setNotes] = useState([])
