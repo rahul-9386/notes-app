@@ -5,7 +5,7 @@ import NoteForm from './components/NoteForm'
 import NoteDetail from './components/NoteDetail'
 import ShareModal from './components/ShareModal'
 
-const API_BASE = 'https://notes-app-backend-production.up.railway.app/' // Reverted backend URL to original correct one
+const API_BASE = 'http://localhost:8001' // Changed backend URL to local backend server
 
 function App() {
   const [notes, setNotes] = useState([])
