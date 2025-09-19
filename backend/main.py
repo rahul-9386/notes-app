@@ -13,7 +13,7 @@ app = FastAPI()
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:5174", "http://localhost:5175"],  # Added local frontend URLs for dev
+    allow_origins=[ "https://notes-app-amber-one.vercel.app", "http://localhost:3000"],    # Added local frontend URLs for dev
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
