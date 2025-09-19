@@ -5,7 +5,7 @@ import NoteForm from './components/NoteForm'
 import NoteDetail from './components/NoteDetail'
 import ShareModal from './components/ShareModal'
 
-const API_BASE = 'http://localhost:8001' // Changed backend URL to local backend server
+const API_BASE = process.env.REACT_APP_API_URL; // Backend URL from .env
 
 function App() {
   const [notes, setNotes] = useState([])
@@ -25,7 +25,7 @@ function App() {
       console.error('Error fetching notes:', error)
     }
   }
-
+  
   const createNote = async (note) => {
     try {
       const response = await axios.post(`${API_BASE}/notes`, note)
